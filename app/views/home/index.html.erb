@@ -1,0 +1,14 @@
+<h2>My Map</h2>
+<div id="map" class="map"></div>
+<% content_for(:javascript) do %>
+  OpenLayer.init();
+  OpenLayer.map.on("click", function(event) {
+    var coordinate = ol.proj.transform(event.coordinate, 'EPSG:3857', 'EPSG:4326');
+    var geometry = new ol.geom.Point([88.36, 22.57]);
+    var feature = new ol.Feature({name: 'My location'});
+    feature.setGeometry(geometry);
+    // add the feature to the source
+    OpenLayer.vectorSource.addFeature(feature);
+    console.log(coordinate)
+  })
+<% end %>

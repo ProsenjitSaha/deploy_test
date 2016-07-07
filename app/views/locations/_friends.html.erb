@@ -1,0 +1,28 @@
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <%= form_for @location, url: share_location_path(@location), method: "POST" do |f| %>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Share location with friends</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <tbody>
+            <% @friends.each_with_index do |friend, index| %>
+              <tr>
+                <td class="<%= 'with-no-border' if index == 0 %>"><%= friend.email %></td>
+                <td class="text-right <%= 'with-no-border' if index == 0 %>"><%= check_box_tag "location[friend_ids][]", friend.id, @shared_locations_friend_id.include?(friend.id), autocomplete: true %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= f.submit "Share", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

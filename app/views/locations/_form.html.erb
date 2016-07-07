@@ -1,0 +1,35 @@
+<div class="share-location-info">
+  Click on the map to create a location or on the marker to update and share location with friends.<br>
+  <strong>Note: </strong>Red marker represents the locations which are private and Green represents the published locations.
+</div>
+<%= form_for Location.new, url: locations_path, method: "POST", remote: true, html: { class: "form-horizontal" } do |f| %>
+  <%= f.hidden_field :id %>
+  <div class="form-group">
+    <%= f.label :latitude, class: "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :latitude, class: "form-control", required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :longitude, class: "col-sm-3 control-label" %>
+    <div class="col-sm-8">
+      <%= f.text_field :longitude, class: "form-control", required: true %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-8">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :public %> Publish this location
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.submit "Save", class: "btn btn-default" %>
+      <%= f.submit "Save & Share with friends", class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+$(".map-container").html("<%= j render 'shared/map' %>");
+OpenLayer.init(JSON.parse("<%= j raw(@locations.to_json) %>"));
+<% if params[:commit] =~ /share/i %>
+  $(".modal-container").html("<%= j render 'locations/friends' %>");
+  $("#myModal").modal();
+<% end %>

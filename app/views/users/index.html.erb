@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <h3>Users</h3>
+    <div class="column">
+      <table class="table">
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.email, user %></td>
+              <td>
+                <% if current_user.has_friendship?(user) %>
+                  <%= link_to "Remove Friendship", friendships_path(id: user), method: "DELETE", class: "btn btn-primary pull-right" %>
+                <% elsif current_user.requested_friendships?(user) %>
+                  <%= link_to "Accept", friendships_path(id: user), method: "PUT", class: "btn btn-success pull-right" %>
+                  <%= link_to "Reject", friendships_path(id: user), method: "DELETE", class: "btn btn-danger pull-right" %>
+                <% elsif current_user.pending_friendship?(user) %>
+                  <span class="btn btn-primary pull-right" disabled="disabled">Request Sent</span>
+                <% else %>
+                  <%= link_to "Send Friend Request", friendships_path(id: user), method: "POST", class: "btn btn-primary pull-right" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
