@@ -13,7 +13,8 @@
 /tmp
 *~
 *#
-
+congig/database.yml
+congig/secrets.yml
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
