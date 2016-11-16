@@ -37,5 +37,4 @@ end
 group :development do
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails', '~> 1.2'
-  gem 'capistrano-rbenv'
 end
